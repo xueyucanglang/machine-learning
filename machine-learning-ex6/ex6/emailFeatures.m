@@ -48,7 +48,12 @@ x = zeros(n, 1);
 %
 %
 
-
+LL1=length(word_indices);
+for i=1:LL1
+  indx=word_indices(i);%take out index of each word
+  x(indx)=1; %corresponding  location of x presetting to 1
+  i++;
+endfor
 
 
 
