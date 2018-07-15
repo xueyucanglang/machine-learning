@@ -30,11 +30,12 @@ error1=zeros(8,8);
 pred1=zeros(length(y));
 for i=1:8
   for j=1:8
-    model= svmTrain(X, y, C1(i), @(x1, x2) gaussianKernel(x1, x2, sigma(j))); %%try every combination of C&sigma in train set
+    model= svmTrain(X, y, C1(i), @(x1, x2) gaussianKernel(x1, x2, sigma1(j))); %%try every combination of C&sigma in train set
     pred1 = svmPredict(model, Xval);%%use the model and cross validation set to predict yval
     error1(i,j)=mean(double(pred1~=yval));%% calculate the error between prediction and real yval
-    
+    j++;
   endfor
+  i++;
 endfor
 [indc,indr]=find(error1==min(min(error1)));%%find the index of minus error
 C=C1(indc);sigma=sigma1(indr);%% use the index to find optimal C&sigma
